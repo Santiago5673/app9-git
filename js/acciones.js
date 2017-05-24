@@ -26,7 +26,7 @@ function getPosition(){
 		'Accuracy: ' +position.coords.accuracy +'\n' +
 		'Altitude Accuracy: ' +position.coords.altitudeAccuracy +'\n' +
 		'Heading: ' +position.coords.heading +'\n' +
-		'Speed:' +position.coords.speed +'\n' +
+		'Speed: ' +position.coords.speed +'\n' +
 		'Timestamp: ' +position.timestamp +'\n');
 	};
 	function onError(error) {
@@ -34,6 +34,11 @@ function getPosition(){
 	}
 }
 function watchPosition(){
+	var options = {
+		maximumAge : 3600000,
+		timeout: 3000,
+		enableHighAccuracy:true,
+	}
 	var watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
 	function onSuccess(position) {
 		$('#latitud').html(position.coords.latitude);
